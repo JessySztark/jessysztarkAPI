@@ -1,0 +1,6 @@
+$kind: collection
+name: jessysztarkAPI
+description: API collection for jessysztarkAPI Node/Express project
+variables:
+  - key: baseUrl
+    value: 'http://localhost:5003'

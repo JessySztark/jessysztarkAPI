@@ -1,0 +1,26 @@
+$kind: http-request
+name: Get BlackVodsky
+method: GET
+url: '{{baseUrl}}/blackvodsky'
+order: 2000
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 2xx", function () {
+          pm.response.to.be.success;
+      });
+
+      pm.test("Response is JSON", function () {
+          pm.response.to.be.json;
+      });
+
+      pm.test("Response has message1 property", function () {
+          const jsonData = pm.response.json();
+          pm.expect(jsonData).to.have.property("message1");
+      });
+
+      pm.test("Response has message2 property", function () {
+          const jsonData = pm.response.json();
+          pm.expect(jsonData).to.have.property("message2");
+      });

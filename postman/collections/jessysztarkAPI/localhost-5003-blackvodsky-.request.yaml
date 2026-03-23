@@ -1,0 +1,51 @@
+$kind: http-request
+name: localhost:5003/blackvodsky/
+description: Test
+url: localhost:5003/blackvodsky/
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"produits\":[\r
+
+    \        {\r
+
+    \            \"productName\": \"Gin\", \r
+
+    \            \"amount\" :2, \r
+
+    \            \"price\" : 0.95\r
+
+    \        },\r
+
+    \        {\r
+
+    \            \"productName\": \"Gin\", \r
+
+    \            \"amount\" :10, \r
+
+    \            \"price\" : 0.95\r
+
+    \        }\r
+
+    \    ],\r
+
+    \    \"employee\":\"Cal Grett\",\r
+
+    \    \"remise\" : true,\r
+
+    \    \"customer\" : {\r
+
+    \        \"firstname\" : \"Timmy\",\r
+
+    \        \"lastname\" : \"Porks\",\r
+
+    \        \"company\" : \"La poudrière de Porks\"\r
+
+    \    },\r
+
+    \    \"pourcentImposable\": 0.05\r
+
+    }"
+order: 2371926685123506
