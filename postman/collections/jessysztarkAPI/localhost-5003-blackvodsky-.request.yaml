@@ -1,17 +1,17 @@
 $kind: http-request
 name: localhost:5003/blackvodsky/
 description: Test
-url: localhost:5003/blackvodsky/
+url: localhost:5003/blackvodsky
 method: POST
 body:
   type: json
   content: "{\r
 
-    \    \"produits\":[\r
+    \    \"products\":[\r
 
     \        {\r
 
-    \            \"productName\": \"Gin\", \r
+    \            \"name\": \"Gin\", \r
 
     \            \"amount\" :2, \r
 
@@ -21,7 +21,7 @@ body:
 
     \        {\r
 
-    \            \"productName\": \"Gin\", \r
+    \            \"name\": \"Gin\", \r
 
     \            \"amount\" :10, \r
 
@@ -37,15 +37,21 @@ body:
 
     \    \"customer\" : {\r
 
+    \        \"civilite\": \"Monsieur\",\r
+
     \        \"firstname\" : \"Timmy\",\r
 
     \        \"lastname\" : \"Porks\",\r
 
-    \        \"company\" : \"La poudrière de Porks\"\r
+    \        \"companyname\" : \"La poudriere de Porks\",\r
+
+    \        \"companybusiness\" : \"Armurerie de Blackwater\",\r
+
+    \        \"town\" : \"Blackwater, West Elizabeth\"\r
 
     \    },\r
 
-    \    \"pourcentImposable\": 0.05\r
+    \    \"pourcentimposable\": 0.05\r
 
     }"
 order: 2371926685123506
