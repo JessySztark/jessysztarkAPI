@@ -4,7 +4,8 @@ const app = express()
 
 app.use(json())
 
-app.use("/factures", express.static("factures"));
+app.use("/factures-image", express.static("factures-image"));
+app.use("/factures-pdf", express.static("factures-pdf"));
 
 app.get("/", (request, response) => {
   response.statusCode = 200

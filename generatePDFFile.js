@@ -247,7 +247,7 @@ async function createPdf(data) {
 
     await fs.writeFileSync(path.join(process.cwd(), `factures-pdf/${id}.pdf`), await pdfDoc.save());
     await convertPDFToPNG(path.join(process.cwd(), `factures-pdf/${id}.pdf`), path.join(process.cwd(), `factures-image/`), `${id}`);
-    return `${id}-1.png`;
+    return `${id}.png`;
 }
 
 export default createPdf;
