@@ -4,6 +4,7 @@ const app = express()
 
 app.use(json())
 
+app.use("/assets", express.static("assets"));
 app.use("/factures-image", express.static("factures-image"));
 app.use("/factures-pdf", express.static("factures-pdf"));
 
