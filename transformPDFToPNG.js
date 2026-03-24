@@ -1,19 +1,17 @@
-import pdf from "pdf-poppler";
+import { exec } from "child_process";
+import path from "path";
 
 function convertPDFToPNG(pdfPath, outputPath, id) {
-    let option = {
-        format: "png",
-        out_dir: outputPath,
-        out_prefix: id,
-        page: null
-    }
-    pdf.convert(pdfPath, option)
-    .then(() => {
-            console.log("Successfully converted PDF to PNG");
-        })
-    .catch(error => {
-            console.error("Error converting PDF to PNG:", error);
+    return new Promise((resolve, reject) => {
+        const outputFile = path.join(outputPath, `${id}.png`);
+
+        const command = `magick "${pdfPath}[0]" "${outputFile}"`;
+
+        exec(command, (err, stdout, stderr) => {
+            if (err) return reject(stderr || err);
+            resolve(stdout);
         });
+    });
 }
 
 export default convertPDFToPNG;

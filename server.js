@@ -15,7 +15,7 @@ app.post("/blackvodsky", async (request, response) => {
   const data = request.body;
   console.log(data);
   const id = await createPdf(JSON.stringify(data)).catch(console.error);
-  const filePath = `https://api.jessysztark.com/factures-image/${id}`;
+  const filePath = `/factures-image/${id}`;
   response.statusCode = 200
   response.send({ message: "Facture créée avec succès!", filePath: filePath })
 })
