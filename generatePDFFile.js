@@ -20,7 +20,6 @@ function createInvoiceNumber() {
 async function createPdf(data) {
 
     const employee = JSON.parse(data)["employee"];
-    const remise = JSON.parse(data)["remise"];
     const customer = JSON.parse(data)["customer"];
     const pourcentImposable = JSON.parse(data)["pourcentimposable"];
     const products = JSON.parse(data)["products"];
@@ -155,9 +154,9 @@ async function createPdf(data) {
             color: rgb(0.17, 0.17,0.18),
         });
 
-        if(remise["isit"] == true) {
+        if(product["remise"]["isit"] == true) {
             // Product > Remise Text
-            page.drawText(`${Number(remise["amount"]).toFixed(2)}`, {
+            page.drawText(`${Number(product["remise"]["amount"]).toFixed(2)}`, {
                 x: rowRemiseInX,
                 y: firstRowOfProductTableInY,
                 size: fontSize,
@@ -166,7 +165,7 @@ async function createPdf(data) {
             });
 
             // Product > Imposable Text
-            page.drawText(`${Number(remise["amount"]*product["price"]*(pourcentImposable/100)).toFixed(2)}`, {
+            page.drawText(`${Number(product["remise"]["amount"]*product["price"]*(pourcentImposable/100)).toFixed(2)}`, {
                 x: rowImposableInX,
                 y: firstRowOfProductTableInY,
                 size: fontSize,
@@ -175,7 +174,7 @@ async function createPdf(data) {
             });
 
             // Product > Sommes Text
-            page.drawText(`${Number(remise["amount"]*product["price"]*product["quantity"]).toFixed(2)}`, {
+            page.drawText(`${Number(product["remise"]["amount"]*product["price"]*product["quantity"]).toFixed(2)}`, {
                 x: rowSommesInX,
                 y: firstRowOfProductTableInY,
                 size: fontSize,
