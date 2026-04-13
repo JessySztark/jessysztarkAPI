@@ -1,5 +1,7 @@
 import express, { json } from "express"
 import createPdf from "./generatePDFFile.js";
+import { checkPassword, changePassword } from "./passwordManagement.js";
+
 const app = express()
 
 app.use(json())
@@ -10,7 +12,7 @@ app.use("/factures-pdf", express.static("factures-pdf"));
 
 app.get("/", (request, response) => {
   response.statusCode = 200
-  response.send({ message: "Mon premier JSON!" })
+  response.send({ message: "Vous n'avez rien à faire ici !" })
 })
 
 app.post("/blackvodsky", async (request, response) => {
@@ -23,8 +25,8 @@ app.post("/blackvodsky", async (request, response) => {
 
 app.post("/blackwater/check", async (request, response) => {
   const data = request.body;
-  const checkPassword = checkPassword(data.password);
-  if (!checkPassword) {
+  const checkPwd = await checkPassword(data.password);
+  if (!checkPwd) {
     response.statusCode = 400;
     response.send({ message: "Mot de passe invalide." });
     return;
@@ -37,7 +39,7 @@ app.post("/blackwater/check", async (request, response) => {
 
 app.post("/blackwater/change", async (request, response) => {
   const data = request.body;
-  const changePasswordResult = changePassword(data.password);
+  await changePassword(data.password);
   response.statusCode = 200;
   response.send({ message: "Mot de passe modifié avec succès!" });
 });
