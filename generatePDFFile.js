@@ -119,7 +119,7 @@ async function createPdf(data) {
     let rowQuantiteInX = 300;
     let rowNameInX = 500;
     let rowPriceInX = 1500;
-    let rowRemiseInX = 1600;
+    let rowRemiseInX = 1700;
     let rowImposableInX = 2000;
     let rowSommesInX = 2250;
 
@@ -156,7 +156,7 @@ async function createPdf(data) {
 
         if(product["remise"]["isit"] == true) {
             // Product > Remise Text
-            page.drawText(`${Number(product["remise"]["amount"]).toFixed(2)}`, {
+            page.drawText(`${Number(product["price"]-product["price"]*product["remise"]["amount"]).toFixed(2)}`, {
                 x: rowRemiseInX,
                 y: firstRowOfProductTableInY,
                 size: fontSize,
