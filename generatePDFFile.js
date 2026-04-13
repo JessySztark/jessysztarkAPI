@@ -71,7 +71,7 @@ async function createPdf(data) {
         x: 1650,
         y: 2490,
         size: fontSize,
-        font: fontYoungHeart,
+        font: fontEastwood,
         color: rgb(0.17, 0.17,0.18),
     });
 
@@ -138,7 +138,7 @@ async function createPdf(data) {
             x: rowNameInX,
             y: firstRowOfProductTableInY,
             size: fontSize,
-            font: fontRailroad,
+            font: fontEastwood,
             color: rgb(0.17, 0.17,0.18),
         });
 
