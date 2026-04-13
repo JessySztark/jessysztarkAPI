@@ -181,6 +181,9 @@ async function createPdf(data) {
                 font: fontRailroad,
                 color: rgb(0.17, 0.17,0.18),
             });
+
+            totalSommes += product["price"]*product["quantity"]*product["remise"]["amount"];
+            totalImposable += product["price"]*pourcentImposable*product["remise"]["amount"];
         }
         else{
             // Product > Imposable Text
@@ -200,11 +203,13 @@ async function createPdf(data) {
                 font: fontRailroad,
                 color: rgb(0.17, 0.17,0.18),
             });
+
+            totalSommes += product["price"]*product["quantity"];
+            totalImposable += product["price"]*pourcentImposable;
         }
 
 
-        totalSommes += product["price"]*product["quantity"];
-        totalImposable += product["price"]*pourcentImposable;
+       
         firstRowOfProductTableInY -= 100; // Move to the next row
     });
 
