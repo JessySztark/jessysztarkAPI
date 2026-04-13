@@ -36,6 +36,12 @@ async function createPdf(data) {
     const fontRailroadBytes = fs.readFileSync('IFC-Railroad.ttf');
     const fontRailroad = await pdfDoc.embedFont(fontRailroadBytes);
 
+    const EastwoodBytes = fs.readFileSync('Eastwood.ttf');
+    const fontEastwood = await pdfDoc.embedFont(EastwoodBytes);
+
+    const TexasBoldBytes = fs.readFileSync('Texas-Bold.otf');
+    const fontTexasBold = await pdfDoc.embedFont(TexasBoldBytes);
+
     const imageBytes = fs.readFileSync('Facture-vierge.png');
     const factureImage = await pdfDoc.embedPng(imageBytes);
 
@@ -74,7 +80,7 @@ async function createPdf(data) {
         x: 1900,
         y: 2490,
         size: fontSize,
-        font: fontYoungHeart,
+        font: fontEastwood,
         color: rgb(0.17, 0.17,0.18),
     });
 
@@ -83,7 +89,7 @@ async function createPdf(data) {
         x: 2150,
         y: 2490,
         size: fontSize,
-        font: fontYoungHeart,
+        font: fontEastwood,
         color: rgb(0.17, 0.17,0.18),
     });
 
@@ -92,7 +98,7 @@ async function createPdf(data) {
         x: 1650,
         y: 2380,
         size: fontSize,
-        font: fontYoungHeart,
+        font: fontEastwood,
         color: rgb(0.17, 0.17,0.18),
     });
 
@@ -101,7 +107,7 @@ async function createPdf(data) {
         x: 1650,
         y: 2270,
         size: fontSize,
-        font: fontYoungHeart,
+        font: fontEastwood,
         color: rgb(0.17, 0.17,0.18),
     });
 
@@ -110,7 +116,7 @@ async function createPdf(data) {
         x: 1650,
         y: 2160,
         size: fontSize,
-        font: fontYoungHeart,
+        font: fontEastwood,
         color: rgb(0.17, 0.17,0.18),
     });
 
@@ -236,7 +242,7 @@ async function createPdf(data) {
         x: 680,
         y: 1775,
         size: 70,
-        font: fontYoungHeart,
+        font: fontEastwood,
         color: rgb(0.17, 0.17,0.18),
     });
 
@@ -245,7 +251,7 @@ async function createPdf(data) {
         x: 1750,
         y: 1775,
         size: 70,
-        font: fontYoungHeart,
+        font: fontEastwood,
         color: rgb(0.17, 0.17,0.18),
     });
 
