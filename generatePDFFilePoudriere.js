@@ -156,7 +156,7 @@ async function createPoudrierePdf(data) {
 
         if(product["SIA"]["isit"] == true) {
             // Product > Serial Text
-            page.drawText(`${Number(product["SIA"]["serial"])}`, {
+            page.drawText(`${product["SIA"]["serial"]}`, {
                 x: rowSerialInX,
                 y: firstRowOfProductTableInY,
                 size: fontSize-12,
