@@ -40,8 +40,9 @@ app.post("/poudriere", async (request, response) => {
 
 app.post("/poudriere/signature", async (request, response) => {
   const data = request.body;
-  const fileBytes = JSON.parse(data)["file"];
-  const employee = JSON.parse(data)["employee"];
+  console.error("Données reçues pour la création de signature : ", data.file);
+  const fileBytes = data.file;
+  const employee = data.employee;
   const answer = await createSignature(fileBytes, employee).catch(console.error);
   response.statusCode = 200
   response.send({ message: `Signature créée avec succès! ${answer}` })
