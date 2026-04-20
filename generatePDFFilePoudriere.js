@@ -119,7 +119,7 @@ async function createPoudrierePdf(data) {
     let rowQuantiteInX = 370;
     let rowNameInX = 550;
     let rowSerialInX = 1405;
-    let rowPriceInX = 1700;
+    let rowPriceInX = 1670;
     let rowRemiseInX = 1900;
     let rowSommesInX = 2150;
 
@@ -177,7 +177,7 @@ async function createPoudrierePdf(data) {
             
 
             // Product > Sommes Text
-            page.drawText(`${Number(product["price"]*product["quantity"]-product["remise"]["amount"]).toFixed(2)}`, {
+            page.drawText(`${Number(product["price"]*product["quantity"]-product["price"]*product["quantity"]*product["remise"]["amount"]).toFixed(2)}`, {
                 x: rowSommesInX,
                 y: firstRowOfProductTableInY,
                 size: fontSize,
@@ -185,7 +185,7 @@ async function createPoudrierePdf(data) {
                 color: rgb(0.17, 0.17,0.18),
             });
 
-            totalSommes += product["price"]*product["quantity"]-product["remise"]["amount"];
+            totalSommes += product["price"]*product["quantity"]-product["price"]*product["quantity"]*product["remise"]["amount"];
             totalImposable += product["price"]*pourcentImposable*product["remise"]["amount"];
         }
         else{
@@ -205,7 +205,7 @@ async function createPoudrierePdf(data) {
 
 
        
-        firstRowOfProductTableInY -= 90; // Move to the next row
+        firstRowOfProductTableInY -= 97; // Move to the next row
     });
 
     // Product > Total Sommmes Text
