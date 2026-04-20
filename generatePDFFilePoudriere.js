@@ -205,7 +205,7 @@ async function createPoudrierePdf(data) {
 
 
        
-        firstRowOfProductTableInY -= 90; // Move to the next row
+        firstRowOfProductTableInY -= 93; // Move to the next row
     });
 
     // Product > Total Sommmes Text
