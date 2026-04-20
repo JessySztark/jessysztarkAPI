@@ -177,7 +177,7 @@ async function createPoudrierePdf(data) {
             
 
             // Product > Sommes Text
-            page.drawText(`${Number(product["remise"]["amount"]*product["price"]*product["quantity"]).toFixed(2)}`, {
+            page.drawText(`${Number(product["price"]*product["quantity"]-product["remise"]["amount"]).toFixed(2)}`, {
                 x: rowSommesInX,
                 y: firstRowOfProductTableInY,
                 size: fontSize,
@@ -185,7 +185,7 @@ async function createPoudrierePdf(data) {
                 color: rgb(0.17, 0.17,0.18),
             });
 
-            totalSommes += product["price"]*product["quantity"]*product["remise"]["amount"];
+            totalSommes += product["price"]*product["quantity"]-product["remise"]["amount"];
             totalImposable += product["price"]*pourcentImposable*product["remise"]["amount"];
         }
         else{
