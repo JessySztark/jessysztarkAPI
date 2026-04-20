@@ -167,7 +167,7 @@ async function createPoudrierePdf(data) {
 
         if(product["remise"]["isit"] == true) {
             // Product > Remise Text
-            page.drawText(`${Number(product["price"]-product["price"]*product["remise"]["amount"]).toFixed(2)}`, {
+            page.drawText(`${Number(product["price"]*product["remise"]["amount"]).toFixed(2)}`, {
                 x: rowRemiseInX,
                 y: firstRowOfProductTableInY,
                 size: fontSize,
@@ -205,7 +205,7 @@ async function createPoudrierePdf(data) {
 
 
        
-        firstRowOfProductTableInY -= 100; // Move to the next row
+        firstRowOfProductTableInY -= 90; // Move to the next row
     });
 
     // Product > Total Sommmes Text
