@@ -2,6 +2,8 @@ import express, { json } from "express"
 import createPdf from "./generatePDFFile.js";
 import { checkPassword, changePassword } from "./passwordManagement.js";
 
+import createSignature from "./createSignature.js";
+
 import  createPoudrierePdf from "./generatePDFFilePoudriere.js";
 
 const app = express()
@@ -34,6 +36,15 @@ app.post("/poudriere", async (request, response) => {
   const filePath = `/factures-poudriere-image/${id}`;
   response.statusCode = 200
   response.send({ message: "Facture créée avec succès!", filePath: filePath })
+})
+
+app.post("/poudriere/signature", async (request, response) => {
+  const data = request.body;
+  const fileBytes = JSON.parse(data)["file"];
+  const employee = JSON.parse(data)["employee"];
+  const answer = await createSignature(fileBytes, employee).catch(console.error);
+  response.statusCode = 200
+  response.send({ message: `Signature créée avec succès! ${answer}` })
 })
 
 app.post("/blackwater/check", async (request, response) => {
