@@ -1,57 +1,71 @@
 $kind: http-request
 name: localhost:5003/blackvodsky/
 description: Test
-url: localhost:5003/blackvodsky
+url: https://api.jessysztark.com/blackvodsky
 method: POST
 body:
   type: json
   content: "{\r
 
-    \    \"products\":[\r
+    \  \"products\": [\r
 
-    \        {\r
+    \    {\r
 
-    \            \"name\": \"Gin\", \r
+    \      \"name\": \"Ligne d'expérimentation (désolée)\",\r
 
-    \            \"amount\" :2, \r
+    \      \"quantity\": 1,\r
 
-    \            \"price\" : 0.95\r
+    \      \"remise\": {\r
 
-    \        },\r
+    \        \"isit\": true,\r
 
-    \        {\r
+    \        \"amount\": 0.9\r
 
-    \            \"name\": \"Gin\", \r
+    \      },\r
 
-    \            \"amount\" :10, \r
-
-    \            \"price\" : 0.95\r
-
-    \        }\r
-
-    \    ],\r
-
-    \    \"employee\":\"Cal Grett\",\r
-
-    \    \"remise\" : true,\r
-
-    \    \"customer\" : {\r
-
-    \        \"civilite\": \"Monsieur\",\r
-
-    \        \"firstname\" : \"Timmy\",\r
-
-    \        \"lastname\" : \"Porks\",\r
-
-    \        \"companyname\" : \"La poudriere de Porks\",\r
-
-    \        \"companybusiness\" : \"Armurerie de Blackwater\",\r
-
-    \        \"town\" : \"Blackwater, West Elizabeth\"\r
+    \      \"price\": 0.8\r
 
     \    },\r
 
-    \    \"pourcentimposable\": 0.05\r
+    \    {\r
 
-    }"
+    \      \"name\": \"Ligne d'expérimentation (désolée)\",\r
+
+    \      \"quantity\": 1,\r
+
+    \      \"remise\": {\r
+
+    \        \"isit\": false,\r
+
+    \        \"amount\": 0\r
+
+    \      },\r
+
+    \      \"price\": 1.5\r
+
+    \    }\r
+
+    \  ],\r
+
+    \  \"employee\": \"Roveil Minrosa\",\r
+
+    \  \"pourcentimposable\": 0.05,\r
+
+    \  \"customer\": {\r
+
+    \    \"town\": \"Blackwater\",\r
+
+    \    \"firstname\": \"Timmy\",\r
+
+    \    \"companyname\": \"La poudriere de Porks\",\r
+
+    \    \"civilite\": \"Monsieur\",\r
+
+    \    \"companybusiness\": \"Armurerie de Blackwater\",\r
+
+    \    \"lastname\": \"Porks\"\r
+
+    \  }\r
+
+    }\r\n"
 order: 2371926685123506

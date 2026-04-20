@@ -2,6 +2,8 @@ import express, { json } from "express"
 import createPdf from "./generatePDFFile.js";
 import { checkPassword, changePassword } from "./passwordManagement.js";
 
+import  createPoudrierePdf from "./generatePDFFilePoudriere.js";
+
 const app = express()
 
 app.use(json())
@@ -9,6 +11,9 @@ app.use(json())
 app.use("/assets", express.static("assets"));
 app.use("/factures-image", express.static("factures-image"));
 app.use("/factures-pdf", express.static("factures-pdf"));
+
+app.use("/factures-poudriere-image", express.static("factures-poudriere-image"));
+app.use("/factures-poudriere-pdf", express.static("factures-poudriere-pdf"));
 
 app.get("/", (request, response) => {
   response.statusCode = 200
@@ -19,6 +24,14 @@ app.post("/blackvodsky", async (request, response) => {
   const data = request.body;
   const id = await createPdf(JSON.stringify(data)).catch(console.error);
   const filePath = `/factures-image/${id}`;
+  response.statusCode = 200
+  response.send({ message: "Facture créée avec succès!", filePath: filePath })
+})
+
+app.post("/poudriere", async (request, response) => {
+  const data = request.body;
+  const id = await createPoudrierePdf(JSON.stringify(data)).catch(console.error);
+  const filePath = `/factures-poudriere-image/${id}`;
   response.statusCode = 200
   response.send({ message: "Facture créée avec succès!", filePath: filePath })
 })
