@@ -118,7 +118,7 @@ async function createPoudrierePdf(data) {
 
     let rowQuantiteInX = 370;
     let rowNameInX = 550;
-    let rowSerialInX = 1390;
+    let rowSerialInX = 1370;
     let rowPriceInX = 1670;
     let rowRemiseInX = 1900;
     let rowSommesInX = 2150;
