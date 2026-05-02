@@ -154,17 +154,6 @@ async function createPoudrierePdf(data) {
             color: rgb(0.17, 0.17,0.18),
         });
 
-        if(product["SIA"]["isit"] == true) {
-            // Product > Serial Text
-            page.drawText(`${product["SIA"]["serial"]}`, {
-                x: rowSerialInX,
-                y: firstRowOfProductTableInY,
-                size: fontSize-12,
-                font: fontRailroad,
-                color: rgb(0.17, 0.17,0.18),
-            });
-        }
-
         if(product["remise"]["isit"] == true) {
             // Product > Remise Text
             page.drawText(`${Number(product["price"]*product["remise"]["amount"]).toFixed(2)}`, {
@@ -203,9 +192,35 @@ async function createPoudrierePdf(data) {
             totalImposable += product["price"]*pourcentImposable;
         }
 
-
+        if(product["SIA"]["isit"] == true) {
+            // Product > Serial Text
+            if(product["quantity"] > 1) {
+                let serialCount = 0;
+                product["SIA"]["serial"].split("|").forEach((serial, index) => {
+                    serialCount++;
+                    page.drawText(`${serial}`, {
+                        x: rowSerialInX,
+                        y: firstRowOfProductTableInY - (93*index),
+                        size: fontSize-12,
+                        font: fontRailroad,
+                        color: rgb(0.17, 0.17,0.18),
+                    });
+                });
+                firstRowOfProductTableInY -= 93*(serialCount-1);
+            }
+            else
+            {
+                page.drawText(`${product["SIA"]["serial"]}`, {
+                    x: rowSerialInX,
+                    y: firstRowOfProductTableInY,
+                    size: fontSize-12,
+                    font: fontRailroad,
+                    color: rgb(0.17, 0.17,0.18),
+                });
+            }
+        }
        
-        firstRowOfProductTableInY -= 93; // Move to the next row
+        firstRowOfProductTableInY -= 93;
     });
 
     // Product > Total Sommmes Text
