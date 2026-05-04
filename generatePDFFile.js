@@ -171,7 +171,7 @@ async function createPdf(data) {
             });
 
             // Product > Imposable Text
-            page.drawText(`${Number(product["remise"]["amount"]*product["price"]*(pourcentImposable/100)).toFixed(2)}`, {
+            page.drawText(`${Number(product["remise"]["amount"]*product["price"]*pourcentImposable).toFixed(2)}`, {
                 x: rowImposableInX,
                 y: firstRowOfProductTableInY,
                 size: fontSize,
