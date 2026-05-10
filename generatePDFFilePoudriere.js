@@ -45,7 +45,7 @@ async function createPoudrierePdf(data) {
     const TexasBoldBytes = fs.readFileSync('Texas-Bold.otf');
     const fontTexasBold = await pdfDoc.embedFont(TexasBoldBytes);
 
-    const imageBytes = fs.readFileSync('Facture-Poudrière.png');
+    const imageBytes = fs.readFileSync('./assets/facture-poudriere.png');
     const factureImage = await pdfDoc.embedPng(imageBytes);
 
     const page = pdfDoc.addPage([factureImage.width, factureImage.height]);
