@@ -164,61 +164,75 @@ async function createPoudrierePdf(data) {
                 color: rgb(0.17, 0.17,0.18),
             });
             
-
-            // Product > Sommes Text
-            page.drawText(`${Number((product["price"]*product["quantity"])-((product["price"]-product["price"]*product["remise"]["amount"])*product["quantity"])).toFixed(2)}`, {
-                x: rowSommesInX,
-                y: firstRowOfProductTableInY,
-                size: fontSize,
-                font: fontRailroad,
-                color: rgb(0.17, 0.17,0.18),
-            });
-
-            totalSommes += (product["price"]*product["quantity"])-((product["price"]-product["price"]*product["remise"]["amount"])*product["quantity"]);
-            totalImposable += product["price"]*pourcentImposable*product["remise"]["amount"];
+            if(product["custom"] == true) {
+                // Product > Sommes Text
+                page.drawText(`${Number(product["price"]*product["remise"]["amount"]).toFixed(2)}`, {
+                    x: rowSommesInX,
+                    y: firstRowOfProductTableInY,
+                    size: fontSize,
+                    font: fontRailroad,
+                    color: rgb(0.17, 0.17,0.18),
+                });
+                totalSommes += product["price"]*product["remise"]["amount"];
+                totalImposable += product["price"]*pourcentImposable*product["remise"]["amount"];
+            }
+            else{
+                // Product > Sommes Text
+                page.drawText(`${Number(product["price"]*product["remise"]["amount"]*product["quantity"]).toFixed(2)}`, {
+                    x: rowSommesInX,
+                    y: firstRowOfProductTableInY,
+                    size: fontSize,
+                    font: fontRailroad,
+                    color: rgb(0.17, 0.17,0.18),
+                });
+                totalSommes += product["price"]*product["remise"]["amount"]*product["quantity"];
+                totalImposable += product["price"]*product["quantity"]*pourcentImposable*product["remise"]["amount"];
+            }
         }
         else{
-            // Product > Sommes Text
-            page.drawText(`${Number(product["price"]*product["quantity"]).toFixed(2)}`, {
-                x: rowSommesInX,
-                y: firstRowOfProductTableInY,
-                size: fontSize,
-                font: fontRailroad,
-                color: rgb(0.17, 0.17,0.18),
-            });
+            if(product["custom"] == true) {
 
-            totalSommes += product["price"]*product["quantity"];
-            totalImposable += product["price"]*pourcentImposable;
+                // Product > Sommes Text
+                page.drawText(`${Number(product["price"]).toFixed(2)}`, {
+                    x: rowSommesInX,
+                    y: firstRowOfProductTableInY,
+                    size: fontSize,
+                    font: fontRailroad,
+                    color: rgb(0.17, 0.17,0.18),
+                });
+                totalSommes += product["price"];
+                totalImposable += product["price"]*pourcentImposable;
+            }
+            else{
+                // Product > Sommes Text
+                page.drawText(`${Number(product["price"]*product["quantity"]).toFixed(2)}`, {
+                    x: rowSommesInX,
+                    y: firstRowOfProductTableInY,
+                    size: fontSize,
+                    font: fontRailroad,
+                    color: rgb(0.17, 0.17,0.18),
+                });
+                totalSommes += product["price"]*product["quantity"];
+                totalImposable += product["price"]*pourcentImposable*product["quantity"];
+            }
         }
 
         if(product["SIA"]["isit"] == true) {
             // Product > Serial Text
-            if(product["quantity"] > 1) {
-                let serialCount = 0;
-                product["SIA"]["serial"].split("|").forEach((serial, index) => {
-                    serialCount++;
-                    page.drawText(`${serial}`, {
-                        x: rowSerialInX,
-                        y: firstRowOfProductTableInY - (93*index),
-                        size: fontSize-12,
-                        font: fontRailroad,
-                        color: rgb(0.17, 0.17,0.18),
-                    });
-                });
-                firstRowOfProductTableInY -= 93*(serialCount-1);
-            }
-            else
-            {
-                page.drawText(`${product["SIA"]["serial"]}`, {
+            let serialCount = 0;
+            product["SIA"]["serial"].split("|").forEach((serial, index) => {
+                if (serial === 0) return;
+                serialCount++;
+                page.drawText(`${serial}`, {
                     x: rowSerialInX,
-                    y: firstRowOfProductTableInY,
+                    y: firstRowOfProductTableInY - (93*index),
                     size: fontSize-12,
                     font: fontRailroad,
                     color: rgb(0.17, 0.17,0.18),
                 });
-            }
-        }
-       
+            });
+            firstRowOfProductTableInY -= 93*(serialCount-1);
+        } 
         firstRowOfProductTableInY -= 93;
     });
 
